@@ -26,6 +26,20 @@
     // Container view.
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
+    // Username label.
+    UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 10, 90, 30)];
+    [userNameLabel setText:@"Username:"];
+    [userNameLabel setBackgroundColor:[UIColor clearColor]];
+    
+    // Login text field
+    UITextField *loginTextField = [[UITextField alloc] initWithFrame:CGRectMake(userNameLabel.frame.size.width,
+                                                                                10,
+                                                                                containerView.frame.size.width - userNameLabel.frame.size.width - 5,
+                                                                                30)];
+    [loginTextField setPlaceholder:@"Enter your username."];
+    [loginTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [loginTextField setFont:[UIFont systemFontOfSize:14]];
+    [loginTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     
 }
 
