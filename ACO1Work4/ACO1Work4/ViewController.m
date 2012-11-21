@@ -55,6 +55,7 @@
     [callToAction setTextColor:[UIColor blueColor]];
     [callToAction setTextAlignment:NSTextAlignmentCenter];
     [callToAction setBackgroundColor:[UIColor lightGrayColor]];
+    [callToAction setNumberOfLines:3];
     
     // Show date button
     UIButton *showDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
