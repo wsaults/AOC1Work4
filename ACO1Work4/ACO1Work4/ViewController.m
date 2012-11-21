@@ -19,11 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*
-    Add a target to the UIButton to call a function called onClick when the user presses the Login button.
-    If the user has not entered any text into the UITextField, display in the UILabel, "Username cannot be empty". Otherwise, display "User: username has been logged in".
-     */
-    
+
     // Container view.
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -33,7 +29,7 @@
     [userNameLabel setBackgroundColor:[UIColor clearColor]];
     
     // Login text field
-    UITextField *loginTextField = [[UITextField alloc] initWithFrame:CGRectMake(userNameLabel.frame.size.width,
+    loginTextField = [[UITextField alloc] initWithFrame:CGRectMake(userNameLabel.frame.size.width,
                                                                                 10,
                                                                                 containerView.frame.size.width - userNameLabel.frame.size.width - 5,
                                                                                 30)];
@@ -50,7 +46,7 @@
     [loginButton addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
     
     // Call to action
-    UILabel *callToAction = [[UILabel alloc] initWithFrame:CGRectMake(0, loginButton.frame.origin.y + 75, containerView.frame.size.width, 75)];
+    callToAction = [[UILabel alloc] initWithFrame:CGRectMake(0, loginButton.frame.origin.y + 75, containerView.frame.size.width, 75)];
     [callToAction setText:@"Please Enter Username"];
     [callToAction setTextColor:[UIColor blueColor]];
     [callToAction setTextAlignment:NSTextAlignmentCenter];
@@ -71,7 +67,11 @@
 }
 
 -(void)onClick {
-    
+    if ([loginTextField.text length] > 0) {
+        [callToAction setText:[NSString stringWithFormat:@"User: %@ has been logged in.", [loginTextField text]]];
+    } else {
+        [callToAction setText:@"Username cannot be empty."];
+    }
 }
 
 @end
