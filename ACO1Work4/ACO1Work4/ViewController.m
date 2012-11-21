@@ -24,9 +24,6 @@
     
     /*
      
-     Create a UIButton using the rounded rectangle type. Give this button any color you wish.
-     Add the text "Show Date" to the button
-     Add an action to the button that when clicked, it will call the same onClick handler you already defined. Make sure to add a tag to the date button so you know which one was pressed.
      Display a UIAlertView with the current date and time displayed in the format seen in the dateAlert graphic in the assets section of this project assignment. You can either format the date and time manually or use the date and time styles. You must use an NSDate object to gather the date and time information.
      */
 
@@ -69,8 +66,6 @@
     [showDateButton setTag:kShowDateTag];
     [showDateButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    
     [self.view addSubview:containerView];
     [containerView addSubview:userNameLabel];
     [containerView addSubview:loginTextField];
@@ -95,9 +90,19 @@
             }
             break;
         case kShowDateTag:
+        {
+            NSDate *dateToDisplay = [NSDate date];
+            NSDateFormatter *formatter = [NSDateFormatter new];
+            [formatter setDateFormat:@"MMMM dd, yyyy HH:mm:ss ZZZZ"];
             
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Date"
+                                                            message:[NSString stringWithFormat:@"%@",[formatter stringFromDate:dateToDisplay]]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil, nil];
+            [alert show];
             break;
-            
+        }
         default:
             break;
     }
