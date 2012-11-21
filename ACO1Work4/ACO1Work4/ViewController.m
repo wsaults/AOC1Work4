@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#define kLoginButtonTag 0
+#define kShowDateTag 1
 
 @interface ViewController ()
 
@@ -18,7 +20,6 @@
 {
     [super viewDidLoad];
     /*
-    Create another UILabel beneath with the default text "Please Enter Username".
     Add a target to the UIButton to call a function called onClick when the user presses the Login button.
     If the user has not entered any text into the UITextField, display in the UILabel, "Username cannot be empty". Otherwise, display "User: username has been logged in".
      */
@@ -45,6 +46,8 @@
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton setFrame:CGRectMake(containerView.frame.size.width - 105, loginTextField.frame.origin.y + loginTextField.frame.size.height + 5, 100, 30)];
     [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    [loginButton setTag:kLoginButtonTag];
+    [loginButton addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
     
     // Call to action
     UILabel *callToAction = [[UILabel alloc] initWithFrame:CGRectMake(0, loginButton.frame.origin.y + 75, containerView.frame.size.width, 75)];
@@ -65,6 +68,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)onClick {
+    
 }
 
 @end
