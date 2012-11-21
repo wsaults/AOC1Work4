@@ -13,6 +13,6 @@
     UILabel *callToAction;
 }
 
--(void)onClick;
+-(void)onClick:(id)sender;
 
 @end
