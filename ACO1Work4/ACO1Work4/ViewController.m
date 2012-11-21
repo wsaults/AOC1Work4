@@ -93,7 +93,7 @@
         {
             NSDate *dateToDisplay = [NSDate date];
             NSDateFormatter *formatter = [NSDateFormatter new];
-            [formatter setDateFormat:@"MMMM dd, yyyy HH:mm:ss ZZZZ"];
+            [formatter setDateFormat:@"MMMM dd, yyyy HH:mm:ss a zzzz"];
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Date"
                                                             message:[NSString stringWithFormat:@"%@",[formatter stringFromDate:dateToDisplay]]
