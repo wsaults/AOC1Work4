@@ -66,12 +66,17 @@
     [showDateButton setTag:kShowDateTag];
     [showDateButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    // Info button
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    [infoButton setFrame:CGRectMake(containerView.frame.size.width - infoButton.frame.size.width - 20, showDateButton.frame.origin.y + 100, infoButton.frame.size.width, infoButton.frame.size.height)];
+    
     [self.view addSubview:containerView];
     [containerView addSubview:userNameLabel];
     [containerView addSubview:loginTextField];
     [containerView addSubview:loginButton];
     [containerView addSubview:callToAction];
     [containerView addSubview:showDateButton];
+    [containerView addSubview:infoButton];
 }
 
 - (void)didReceiveMemoryWarning
