@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #define kLoginButtonTag 0
 #define kShowDateTag 1
+#define kInfoButtonTag 3
 
 #define kLeftHandPadding 5
 
@@ -21,11 +22,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    /*
-     
-     Display a UIAlertView with the current date and time displayed in the format seen in the dateAlert graphic in the assets section of this project assignment. You can either format the date and time manually or use the date and time styles. You must use an NSDate object to gather the date and time information.
-     */
 
     // Container view.
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -44,6 +40,7 @@
     [loginTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [loginTextField setFont:[UIFont systemFontOfSize:14]];
     [loginTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [loginTextField setDelegate:self];
     
     // Login button
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -69,7 +66,16 @@
     // Info button
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     [infoButton setFrame:CGRectMake(containerView.frame.size.width - infoButton.frame.size.width - 20, showDateButton.frame.origin.y + 100, infoButton.frame.size.width, infoButton.frame.size.height)];
+    [infoButton setTag:kInfoButtonTag];
+    [infoButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    // Created by label
+    createdByLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, containerView.frame.size.height - 100, containerView.frame.size.width, 100)];
+    [createdByLabel setBackgroundColor:[UIColor clearColor]];
+    [createdByLabel setFont:[UIFont systemFontOfSize:13]];
+    [createdByLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    // Add the subviews.
     [self.view addSubview:containerView];
     [containerView addSubview:userNameLabel];
     [containerView addSubview:loginTextField];
@@ -77,6 +83,7 @@
     [containerView addSubview:callToAction];
     [containerView addSubview:showDateButton];
     [containerView addSubview:infoButton];
+    [containerView addSubview:createdByLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,15 +92,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma - mark onClock method
 -(void)onClick:(id)sender {
     switch ([sender tag]) {
         case kLoginButtonTag:
             if ([loginTextField.text length] > 0) {
                 [callToAction setText:[NSString stringWithFormat:@"User: %@ has been logged in.", [loginTextField text]]];
+                [loginTextField resignFirstResponder];
             } else {
                 [callToAction setText:@"Username cannot be empty."];
             }
             break;
+            
         case kShowDateTag:
         {
             NSDate *dateToDisplay = [NSDate date];
@@ -108,9 +118,20 @@
             [alert show];
             break;
         }
+            
+        case kInfoButtonTag:
+            [createdByLabel setText:@"This application was created by: William Saults"];
+            break;
+            
         default:
             break;
     }
+}
+
+#pragma - mark UITextField delegate method
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [loginTextField resignFirstResponder];
+    return YES;
 }
 
 @end

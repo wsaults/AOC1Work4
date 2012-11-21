@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController {
+@interface ViewController : UIViewController <UITextFieldDelegate> {
     UITextField *loginTextField;
     UILabel *callToAction;
+    UILabel *createdByLabel;
 }
 
 -(void)onClick:(id)sender;
