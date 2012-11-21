@@ -14,6 +14,10 @@
     UILabel *createdByLabel;
 }
 
+/**
+ This method does some action based on the sender.
+ @param takes only the sender which fired this selector.
+ **/
 -(void)onClick:(id)sender;
 
 @end
