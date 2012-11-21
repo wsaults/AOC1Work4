@@ -41,6 +41,24 @@
     [loginTextField setFont:[UIFont systemFontOfSize:14]];
     [loginTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     
+    // Login button
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [loginButton setFrame:CGRectMake(containerView.frame.size.width - 105, loginTextField.frame.origin.y + loginTextField.frame.size.height + 5, 100, 30)];
+    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    
+    // Call to action
+    UILabel *callToAction = [[UILabel alloc] initWithFrame:CGRectMake(0, loginButton.frame.origin.y + 75, containerView.frame.size.width, 75)];
+    [callToAction setText:@"Please Enter Username"];
+    [callToAction setTextColor:[UIColor blueColor]];
+    [callToAction setTextAlignment:NSTextAlignmentCenter];
+    [callToAction setBackgroundColor:[UIColor lightGrayColor]];
+    
+    
+    [self.view addSubview:containerView];
+    [containerView addSubview:userNameLabel];
+    [containerView addSubview:loginTextField];
+    [containerView addSubview:loginButton];
+    [containerView addSubview:callToAction];
 }
 
 - (void)didReceiveMemoryWarning
